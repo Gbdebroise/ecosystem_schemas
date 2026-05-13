@@ -1,0 +1,80 @@
+{
+  "signal_id": "SMAUG-EURUSD-20250512-1015",
+  "generated_at": "2025-05-12T10:15:00+00:00",
+  "asset": "EUR/USD",
+  "exchange_ref": "mt5",
+  "directional_bias": {
+    "direction": "bearish",
+    "timeframe": "1h",
+    "window_end": "2025-05-12T18:00:00+00:00",
+    "confidence": 0.78,
+    "notes": "Signal SMC London session — bearish OB 1h"
+  },
+  "trigger": {
+    "type": "bearish_bos",
+    "confirmed": true,
+    "preceded_by": "fvg_fill",
+    "description": "BOS 1h après fill du FVG haussier précédent"
+  },
+  "entry_zones": [
+    {
+      "id": "EZ1",
+      "priority": "high",
+      "low": "1.08550",
+      "high": "1.08680",
+      "type": "limit",
+      "rationale": "OB 1h bearish + 0.5 fib",
+      "probability": 0.70,
+      "notes": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "TP1",
+      "price": "1.08120",
+      "type": "tp",
+      "priority": "high",
+      "timeframe": "1h",
+      "condition": null
+    },
+    {
+      "id": "TP2",
+      "price": "1.07820",
+      "type": "tp",
+      "priority": "medium",
+      "timeframe": "4h",
+      "condition": null
+    }
+  ],
+  "invalidation": {
+    "level": "1.08920",
+    "type": "stop_loss",
+    "consequence": "Break above 1.08920 invalide la structure bearish"
+  },
+  "institutional_context": {
+    "notes": "Killzone London open",
+    "liquidity_pools": ["1.08200", "1.07900"],
+    "order_blocks": ["1.08620"]
+  },
+  "market_structure": {
+    "htf_trend": "bearish",
+    "ltf_trend": "bearish",
+    "last_bos": "1.08400",
+    "last_choch": "1.08680",
+    "notes": null
+  },
+  "source_meta": {
+    "type": "smaug_smc",
+    "methodology": "HORIIZONFX_SMC_RF",
+    "promo_bias": 0.0,
+    "methodology_score": 0.85,
+    "verifiability": 1.0,
+    "composite_score": 0.83,
+    "author_id": "smaug:eurusd:1h"
+  },
+  "argos_instructions": {
+    "cross_check_required": [],
+    "min_sources_to_activate": 1,
+    "hermes_activation_condition": "price touches EZ1 and RSI 1h > 50"
+  }
+}

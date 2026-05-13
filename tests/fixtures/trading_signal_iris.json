@@ -1,0 +1,90 @@
+{
+  "signal_id": "IRIS-SOL-20250512-001",
+  "generated_at": "2025-05-12T07:42:00+00:00",
+  "asset": "SOL/USD",
+  "exchange_ref": "binance",
+  "directional_bias": {
+    "direction": "bullish",
+    "timeframe": "4h",
+    "window_end": "2025-05-14T20:00:00+00:00",
+    "confidence": 0.72,
+    "notes": "Reclaim de la zone 92-94 après sweep des lows asiatiques"
+  },
+  "trigger": {
+    "type": "bullish_choch",
+    "confirmed": true,
+    "preceded_by": "liquidity_sweep",
+    "description": "CHoCH 4h après sweep du low du 11/05"
+  },
+  "entry_zones": [
+    {
+      "id": "EZ1",
+      "priority": "high",
+      "low": "92.75",
+      "high": "94.00",
+      "type": "limit",
+      "rationale": "OB 4h + 50% fib swing",
+      "probability": 0.65,
+      "notes": "Entry préférée"
+    },
+    {
+      "id": "EZ2",
+      "priority": "medium",
+      "low": "89.50",
+      "high": "91.00",
+      "type": "limit",
+      "rationale": "POI inférieur si breakdown",
+      "probability": 0.25,
+      "notes": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "TP1",
+      "price": "106.00",
+      "type": "tp",
+      "priority": "high",
+      "timeframe": "4h",
+      "condition": null
+    },
+    {
+      "id": "TP2",
+      "price": "118.00",
+      "type": "runner",
+      "priority": "medium",
+      "timeframe": "1d",
+      "condition": "after TP1 hit"
+    }
+  ],
+  "invalidation": {
+    "level": "87.00",
+    "type": "stop_loss",
+    "consequence": "Break below 87 invalide la thèse — close position"
+  },
+  "institutional_context": {
+    "notes": "Order block 4h non testé entre 92-94",
+    "liquidity_pools": ["88.00", "85.50"],
+    "order_blocks": ["93.20"]
+  },
+  "market_structure": {
+    "htf_trend": "bullish",
+    "ltf_trend": "bullish",
+    "last_bos": "95.40",
+    "last_choch": "93.10",
+    "notes": null
+  },
+  "source_meta": {
+    "type": "iris_telegram",
+    "methodology": "SMC/ICT",
+    "promo_bias": 0.15,
+    "methodology_score": 0.78,
+    "verifiability": 0.82,
+    "composite_score": 0.74,
+    "author_id": "tg:cryptosignals_pro:analyst_jdoe"
+  },
+  "argos_instructions": {
+    "cross_check_required": ["kronos_forecast", "iris_youtube"],
+    "min_sources_to_activate": 2,
+    "hermes_activation_condition": "price touches EZ1"
+  }
+}

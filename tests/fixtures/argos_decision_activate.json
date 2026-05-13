@@ -1,0 +1,25 @@
+{
+  "decision_id": "ARGOS-SOL-20250512-001",
+  "status": "activate",
+  "asset": "SOL/USD",
+  "generated_at": "2025-05-12T08:00:00+00:00",
+  "consensus": {
+    "direction": "bullish",
+    "weighted_score": 0.78,
+    "sources_count": 3,
+    "sources_used": [
+      "IRIS-SOL-20250512-001",
+      "KRONOS-SOL-20250512-0800",
+      "IRIS-SOL-20250511-007"
+    ]
+  },
+  "hermes_instruction": {
+    "action": "open_long",
+    "entry_low": "92.75",
+    "entry_high": "94.00",
+    "targets": ["106.00", "118.00"],
+    "stop_loss": "87.00",
+    "conviction": 0.78,
+    "activation_condition": "price touches EZ1"
+  }
+}

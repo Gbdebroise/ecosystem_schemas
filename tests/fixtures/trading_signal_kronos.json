@@ -1,0 +1,62 @@
+{
+  "signal_id": "KRONOS-SOL-20250512-0800",
+  "generated_at": "2025-05-12T08:00:00+00:00",
+  "asset": "SOL/USD",
+  "exchange_ref": "binance",
+  "directional_bias": {
+    "direction": "bullish",
+    "timeframe": "4h",
+    "window_end": "2025-05-13T08:00:00+00:00",
+    "confidence": 0.81,
+    "notes": "Forecast Kronos foundation model — 24h horizon"
+  },
+  "trigger": {
+    "type": "forecast_breakout",
+    "confirmed": false,
+    "preceded_by": null,
+    "description": "Prédiction de cassure haussière dans les 6 prochaines bougies 4h"
+  },
+  "entry_zones": [
+    {
+      "id": "EZ1",
+      "priority": "high",
+      "low": "93.50",
+      "high": "95.00",
+      "type": "breakout",
+      "rationale": "Zone de breakout prédite par le forecast",
+      "probability": 0.81,
+      "notes": "Confiance élevée du modèle"
+    }
+  ],
+  "targets": [
+    {
+      "id": "TP1",
+      "price": "104.50",
+      "type": "tp",
+      "priority": "high",
+      "timeframe": "4h",
+      "condition": null
+    }
+  ],
+  "invalidation": {
+    "level": "88.50",
+    "type": "soft_invalidation",
+    "consequence": "Forecast invalidé si close 4h < 88.50"
+  },
+  "institutional_context": null,
+  "market_structure": null,
+  "source_meta": {
+    "type": "kronos_forecast",
+    "methodology": "kronos_foundation_model_v1",
+    "promo_bias": 0.0,
+    "methodology_score": 0.90,
+    "verifiability": 1.0,
+    "composite_score": 0.86,
+    "author_id": "kronos:sol-usd:4h"
+  },
+  "argos_instructions": {
+    "cross_check_required": ["iris_telegram", "smaug_smc"],
+    "min_sources_to_activate": 2,
+    "hermes_activation_condition": "consensus bullish ≥ 0.7"
+  }
+}
