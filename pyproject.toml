@@ -19,6 +19,7 @@ dev = [
     "vulture>=2.11",
     "radon>=6.0",
     "pre-commit>=3.7",
+    "pip-audit>=2.7",
 ]
 
 [build-system]
@@ -53,7 +54,7 @@ ignore_missing_imports = true
 known_first_party = ["ecosystem_schemas"]
 # Outils CLI (jamais importés dans le code, mais utilisés via `uv run <tool>`)
 [tool.deptry.per_rule_ignores]
-DEP002 = ["pytest", "pytest-cov", "ruff", "mypy", "deptry", "vulture", "radon", "pre-commit"]
+DEP002 = ["pytest", "pytest-cov", "ruff", "mypy", "deptry", "vulture", "radon", "pre-commit", "pip-audit"]
 
 # ── vulture ── (détecte le code mort)
 [tool.vulture]
