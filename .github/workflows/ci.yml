@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Install Python (pinned via .python-version)
+        run: uv python install
+
+      - name: Install dependencies
+        run: uv sync --extra dev
+
+      - name: Ruff lint
+        run: uv run ruff check .
+
+      - name: Ruff format (check)
+        run: uv run ruff format --check .
+
+      - name: mypy
+        run: uv run mypy src/ --ignore-missing-imports
+
+      - name: pytest (with coverage)
+        run: uv run pytest
+
+      - name: pip-audit
+        run: uv run pip-audit --strict
+        continue-on-error: false
