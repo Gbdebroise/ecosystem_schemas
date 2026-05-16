@@ -5,13 +5,14 @@ from __future__ import annotations
 from typing import Any
 
 import pytest
+from pydantic import ValidationError
+
 from ecosystem_schemas import (
     ArgosDecision,
     ArgosStatus,
     Direction,
     HermesAction,
 )
-from pydantic import ValidationError
 
 
 class TestFixtureParse:

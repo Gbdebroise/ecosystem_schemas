@@ -7,13 +7,14 @@ from decimal import Decimal
 from typing import Any
 
 import pytest
+from pydantic import ValidationError
+
 from ecosystem_schemas import (
     Direction,
     Priority,
     SourceType,
     TradingSignal,
 )
-from pydantic import ValidationError
 
 
 class TestFixturesParse:
