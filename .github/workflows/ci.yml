@@ -34,11 +34,28 @@ jobs:
       - name: Ruff format (check)
         run: uv run ruff format --check .
 
-      - name: mypy
-        run: uv run mypy src/ --ignore-missing-imports
+      - name: mypy (strict)
+        run: uv run mypy src/ --strict
 
-      - name: pytest (with coverage)
+      - name: deptry (unused / missing deps)
+        run: uv run deptry .
+
+      - name: vulture (dead code)
+        run: uv run vulture src/ --min-confidence 80
+
+      - name: radon (cyclomatic complexity — fail on rank C+)
+        run: uv run radon cc src/ -a --no-assert -nc
+
+      - name: pytest (with coverage XML)
         run: uv run pytest
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          flags: ecosystem_schemas
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: pip-audit
         run: uv run pip-audit --strict

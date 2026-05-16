@@ -15,6 +15,10 @@ dev = [
     "pytest-cov>=5.0",
     "ruff>=0.4",
     "mypy>=1.10",
+    "deptry>=0.20",
+    "vulture>=2.11",
+    "radon>=6.0",
+    "pre-commit>=3.7",
 ]
 
 [build-system]
@@ -26,7 +30,7 @@ packages = ["src/ecosystem_schemas"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=src/ecosystem_schemas --cov-report=term-missing --cov-fail-under=80"
+addopts = "--cov=src/ecosystem_schemas --cov-report=term-missing --cov-report=xml --cov-fail-under=80"
 
 [tool.coverage.run]
 source = ["src/ecosystem_schemas"]
@@ -43,3 +47,19 @@ select = ["E", "W", "F", "I", "B", "UP", "N", "SIM", "RET", "ARG"]
 python_version = "3.11"
 strict = true
 ignore_missing_imports = true
+
+# ── deptry ── (détecte deps déclarées inutilisées / utilisées non déclarées)
+[tool.deptry]
+known_first_party = ["ecosystem_schemas"]
+# Outils CLI (jamais importés dans le code, mais utilisés via `uv run <tool>`)
+[tool.deptry.per_rule_ignores]
+DEP002 = ["pytest", "pytest-cov", "ruff", "mypy", "deptry", "vulture", "radon", "pre-commit"]
+
+# ── vulture ── (détecte le code mort)
+[tool.vulture]
+paths = ["src"]
+min_confidence = 80
+ignore_decorators = ["@pytest.fixture", "@field_validator", "@model_validator"]
+ignore_names = ["cls"]  # signature obligatoire des @classmethod Pydantic
+
+# ── radon ── (complexité cyclomatique — config CLI uniquement, pas pyproject)
