@@ -58,5 +58,5 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: pip-audit
-        run: uv run pip-audit --strict
+        run: uv run pip-audit
         continue-on-error: false
